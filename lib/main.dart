@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     List<Meeting> meetings = <Meeting>[];
     final DateTime today = DateTime.now();
     final DateTime startTime =
-        DateTime(today.year, today.month, today.day, 9, 0, 0);
+    DateTime(today.year, today.month, today.day, 9, 0, 0);
     final DateTime endTime = startTime.add(Duration(hours: 2));
     meetings.add(
         Meeting("Conference", startTime, endTime, Color(0xFF0F8644), false));
@@ -33,36 +33,33 @@ class MyApp extends StatelessWidget {
 }
 
 class MeetingDataSource extends CalendarDataSource {
-  MeetingDataSource(this.source);
-
-  List<Meeting> source;
-
-  @override
-  List get appointments => source;
+  MeetingDataSource(List<Meeting> source){
+    appointments = source;
+  }
 
   @override
   DateTime getStartTime(int index) {
-    return source[index].from;
+    return appointments[index].from;
   }
 
   @override
   DateTime getEndTime(int index) {
-    return source[index].to;
+    return appointments[index].to;
   }
 
   @override
   String getSubject(int index) {
-    return source[index].eventName;
+    return appointments[index].eventName;
   }
 
   @override
   Color getColor(int index) {
-    return source[index].background;
+    return appointments[index].background;
   }
 
   @override
   bool isAllDay(int index) {
-    return source[index].isAllDay;
+    return appointments[index].isAllDay;
   }
 }
 
